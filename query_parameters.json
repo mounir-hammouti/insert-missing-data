@@ -1,0 +1,29 @@
+{
+    "Columns_to_update" : [
+        {
+            "Planted_area_ha": {
+                "table_name" : "parcels",
+                "field_name" : "plantedarea",
+                "primary_key" : "id"
+            }
+        }
+    ],
+
+    "Joins": [
+        {
+            "table_name" : "parcelwaves",
+            "primary_key" : "id",
+            "foreign_key" : "parcelid",
+            "join_type" : "inner"
+
+        }
+    ],
+
+    "Identifying_columns": [
+        {   "Name_GPS_track": {
+                "table_name" : "parcelwaves",
+                "field_name" : "gpsfilename"
+            }
+        }
+    ]
+}
