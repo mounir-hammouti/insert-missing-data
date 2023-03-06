@@ -15,11 +15,13 @@
                     "name": "parcelwaves",
                     "join_type": "inner"
                     }
-                ]
+                ],
+                "foreign_keys" : {}
             },
 
             "parcelwaves" : {
                 "primary_key" : "id",
+                "tables_to_join" : [],
                 "foreign_keys" : {
                     "parcels" : "parcelid"
                 }
