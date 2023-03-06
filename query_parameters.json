@@ -9,30 +9,35 @@
 
     "Joins":
         {
-            "parcels" : {
-                "primary_key" : "id",
-                "tables_to_join" : [ {
-                    "name": "parcelwaves",
-                    "join_type": "inner"
-                    }
-                ],
-                "foreign_keys" : {}
-            },
+            "Planted_area_ha": {
+                "parcels" : {
+                    "primary_key" : "id",
+                    "tables_to_join" : [ {
+                        "name": "parcelwaves",
+                        "join_type": "inner"
+                        }
+                    ],
+                    "foreign_keys" : {}
+                },
 
-            "parcelwaves" : {
-                "primary_key" : "id",
-                "tables_to_join" : [],
-                "foreign_keys" : {
-                    "parcels" : "parcelid"
+                "parcelwaves" : {
+                    "primary_key" : "id",
+                    "tables_to_join" : [],
+                    "foreign_keys" : {
+                        "parcels" : "parcelid"
+                    }
                 }
-            }
+        }
 
         },
 
     "Identifying_columns": 
-        {   "Name_GPS_track": {
+        {   
+            "Planted_area_ha": {
+                "Name_GPS_track": {
                 "table_name" : "parcelwaves",
                 "field_name" : "gpsfilename"
+                }
             }
         }
 }
