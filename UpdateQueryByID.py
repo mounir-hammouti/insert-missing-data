@@ -32,18 +32,17 @@ class UpdateQueryByID:
 
         if joins: # check if dictionary is not empty
             for key, value in joins.items():
-                if "tables_to_join" in value: # check if there are tables to join
-                    tables_list = value.get("tables_to_join")
-                    if tables_list: # check if list is not empty
-                        for table in tables_list:
-                            join_type = table.get("join_type").strip()
-                            table_name = table.get("name").strip()
-                            primary_key = value.get("primary_key").strip()
-                            foreign_key = joins.get(table_name).get("foreign_keys").get(key).strip()
-                            join_query =  sql.SQL(join_type + " join {} on {} = {}\n").format(sql.Identifier(table_name),
-                                                                        sql.Identifier(key, primary_key),
-                                                                        sql.Identifier(table_name, foreign_key) )
-                            join_clause = sql.Composed([join_clause, join_query])
+                tables_list = value.get("tables_to_join", []) # return empty list if no tables_to_join key
+                if tables_list: # check if list is not empty
+                    for table in tables_list:
+                        join_type = table.get("join_type").strip()
+                        table_name = table.get("name").strip()
+                        primary_key = value.get("primary_key").strip()
+                        foreign_key = joins.get(table_name).get("foreign_keys").get(key).strip()
+                        join_query =  sql.SQL(join_type + " join {} on {} = {}\n").format(sql.Identifier(table_name),
+                                                                    sql.Identifier(key, primary_key),
+                                                                    sql.Identifier(table_name, foreign_key) )
+                        join_clause = sql.Composed([join_clause, join_query])
 
         return join_clause
     
@@ -75,9 +74,7 @@ class UpdateQueryByID:
     
     def pretty_table_from_query_result(self, result):
         columns = [desc[0] for desc in self.cursor.description]
-        dict_list = []
-        for row in result:
-            dict_list.append(dict(zip(columns, row)))
+        dict_list = [dict(zip(columns, row)) for row in result]
         dd = defaultdict(list)
         for d in dict_list:
             for key, value in d.items():
