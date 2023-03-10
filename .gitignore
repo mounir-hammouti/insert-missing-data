@@ -1,7 +1,7 @@
+__pycache__/
+*.py[cod]
 *.xlsx
 *.docx
+*.ipynb
 .env
-config_files
-debug_logs
-error_logs
-missing_data
+*.log
