@@ -10,7 +10,7 @@ Le fichier doit commencer à la première colonne. Le nom des colonnes doit figu
 
 Ci-dessous un exemple de fichier permettant de mettre à jour l'aire plantée en hectare, en identifiant les parcels par le nom du fichier GPS:
 
-![Excel file image](/img/excel_capture.png)
+![Excel file image](img/excel_capture.PNG)
 
 ## Fichier de configuration
 
